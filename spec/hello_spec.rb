@@ -1,9 +1,9 @@
- it "is not hard-coded" do
-    other_names = ["Ali", "Jasmine", "Persephone"]
+ require "spec_helper"
 
-    expect{ hello_t(other_names){ |name| puts name } }
-      .to output("Ali\nJasmine\nPersephone\n")
-    expect{ hello_t(other_names){ |name| puts name.upcase } }
-      .to output("ALI\nJASMINE\nPERSEPHONE\n")
-      .to_stdout
+describe "#hello_t" do 
+  it "takes in an argument of an array and puts out a greeting to each person in the array whose name begins with the letter T" do 
+    array = ["Tim", "Tom", "Jim"]
+    expect{hello_t(array){|name| puts "Hi, #{name}" if name.start_with?('T') }}.to output("Hi, Tim\nHi, Tom\n").to_stdout
+    expect(hello_t(array) {|name| puts "Hi, #{name}" if name.start_with?('T') }).to eq(array)
   end
+end 
